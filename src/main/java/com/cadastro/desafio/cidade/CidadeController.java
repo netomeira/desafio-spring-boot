@@ -5,9 +5,11 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +44,10 @@ public class CidadeController {
         novaCidade.setEstado(cidade.getEstado());
 
         cidadeRepository.save(novaCidade);
+    }
+
+    @PutMapping("/{id}")
+    public void editar(@PathVariable("id") Long id, @Valid @RequestBody CidadeTO cidade){
     }
 
 }
