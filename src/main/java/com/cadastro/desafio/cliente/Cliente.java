@@ -3,17 +3,26 @@ package com.cadastro.desafio.cliente;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Cliente {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
-    private String nomeCompleto;
-    private String sexo;
+
+    private String nome;
+
+    @Enumerated(EnumType.STRING)
+    private Genero genero;
+
     private Date dataNascimento;
+
     private Integer idade;
+
     private String cidade;
 
     /**
@@ -31,31 +40,31 @@ public class Cliente {
     }
 
     /**
-     * @return String return the nomeCompleto
+     * @return String return the nome
      */
-    public String getNomeCompleto() {
-        return nomeCompleto;
+    public String getNome() {
+        return nome;
     }
 
     /**
-     * @param nomeCompleto the nomeCompleto to set
+     * @param nome the nome to set
      */
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     /**
-     * @return String return the sexo
+     * @return Genero return the genero
      */
-    public String getSexo() {
-        return sexo;
+    public Genero getGenero() {
+        return genero;
     }
 
     /**
-     * @param sexo the sexo to set
+     * @param genero the genero to set
      */
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
 
     /**

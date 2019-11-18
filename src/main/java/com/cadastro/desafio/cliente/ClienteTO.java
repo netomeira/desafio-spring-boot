@@ -3,7 +3,7 @@ package com.cadastro.desafio.cliente;
 public class ClienteTO {
 
     private String nome;
-    private String sexo;
+    private String genero;
     private String dataNascimento;
     private String cidade;
 
@@ -22,17 +22,17 @@ public class ClienteTO {
     }
 
     /**
-     * @return String return the sexo
+     * @return String return the genero
      */
-    public String getSexo() {
-        return sexo;
+    public String getGenero() {
+        return genero;
     }
 
     /**
-     * @param sexo the sexo to set
+     * @param genero the genero to set
      */
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     /**

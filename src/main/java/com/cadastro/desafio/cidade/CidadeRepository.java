@@ -3,11 +3,10 @@ package com.cadastro.desafio.cidade;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CidadeRepository extends JpaRepository<Cidade, Long>{
-
-    List<Cidade> findByNomeAndEstado(String nome, String estado);
+public interface CidadeRepository extends JpaRepository<Cidade, Long>, JpaSpecificationExecutor<Cidade>{
 
 }

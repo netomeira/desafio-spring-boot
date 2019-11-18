@@ -5,7 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,35 +19,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cidade")
 public class CidadeController {
 
-    private CidadeRepository cidadeRepository;
+    private CidadeService cidadeService;
 
     @Autowired
-    public CidadeController(CidadeRepository cidadeRepository){
-        this.cidadeRepository = cidadeRepository;
+    public CidadeController(CidadeService cidadeService) {
+        this.cidadeService = cidadeService;
     }
 
     @GetMapping("/{id}")
     public Cidade buscarPorId(@PathVariable("id") Long id) throws Exception {
-        return cidadeRepository.findById(id).orElseThrow(Exception::new);
+        return cidadeService.buscarPorId(id);
     }
 
     @GetMapping
-    public List<Cidade> buscar(@RequestParam String nome,
-                               @RequestParam String estado){
-        return cidadeRepository.findByNomeAndEstado(nome, estado);
+    public List<Cidade> buscar(@RequestParam(required = false) String nome,
+            @RequestParam(required = false) String estado) {
+        return cidadeService.buscar(nome, estado);
     }
 
     @PostMapping
-    public void cadastrar(@Valid @RequestBody CidadeTO cidade){
-        Cidade novaCidade = new Cidade();
-        novaCidade.setNome(cidade.getNome());
-        novaCidade.setEstado(cidade.getEstado());
-
-        cidadeRepository.save(novaCidade);
+    public void cadastrar(@Valid @RequestBody CidadeTO cidade) {
+        cidadeService.cadastrar(cidade);
     }
 
     @PutMapping("/{id}")
-    public void editar(@PathVariable("id") Long id, @Valid @RequestBody CidadeTO cidade){
+    public void editar(@PathVariable("id") Long id, @Valid @RequestBody CidadeTO cidade) {
+        cidadeService.editar(id, cidade);
+    }
+
+    @DeleteMapping("/{id}")
+    public void remover(@PathVariable("id") Long id){
+        cidadeService.remover(id);
     }
 
 }
