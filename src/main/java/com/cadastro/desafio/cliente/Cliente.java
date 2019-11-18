@@ -6,12 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Cliente {
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -19,6 +21,7 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
+    @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
     private Integer idade;

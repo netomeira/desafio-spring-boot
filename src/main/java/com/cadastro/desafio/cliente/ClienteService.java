@@ -9,11 +9,16 @@ import java.util.List;
 import com.cadastro.desafio.Utils;
 import com.cadastro.desafio.excecao.NaoEncontradoException;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteService {
 
+    @Autowired
+    protected ModelMapper modelMapper;
+    
     private ClienteRepository clienteRepository;
 
     public ClienteService(ClienteRepository clienteRepository) {
@@ -28,16 +33,19 @@ public class ClienteService {
         return clienteRepository.findAll(where(likeNome(nome)));
     }
 
-    public void cadastrar(ClienteTO clienteTO){
-        Cliente cliente = new Cliente();
+    public void cadastrar(ClienteTO clienteTO) {
+        Cliente cliente = modelMapper.map(clienteTO, Cliente.class);
+        // modelMapper.map(p, ClienteTO.class);                                    
+		
+        // Cliente cliente = new Cliente();
 
-        Date dataNascimento = Date.valueOf(clienteTO.getDataNascimento());
+        // Date dataNascimento = Date.valueOf(clienteTO.getDataNascimento());
         
-        cliente.setNome(clienteTO.getNome());
-        cliente.setGenero(Genero.get(clienteTO.getGenero()));
-        cliente.setDataNascimento(dataNascimento);
-        cliente.setIdade(Utils.calcularIdade(dataNascimento.toLocalDate()));
-        cliente.setCidade(clienteTO.getCidade());
+        // cliente.setNome(clienteTO.getNome());
+        // cliente.setGenero(Genero.get(clienteTO.getGenero()));
+        // cliente.setDataNascimento(dataNascimento);
+        // cliente.setIdade(Utils.calcularIdade(dataNascimento.toLocalDate()));
+        // cliente.setCidade(clienteTO.getCidade());
 
         clienteRepository.save(cliente);
     }
