@@ -6,6 +6,8 @@ import static org.springframework.data.jpa.domain.Specification.where;
 
 import java.util.List;
 
+import com.cadastro.desafio.excecao.NaoEncontradoException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,10 @@ public class CidadeService {
 
     public CidadeService(CidadeRepository cidadeRepository) {
         this.cidadeRepository = cidadeRepository;
+    }
+
+    public Cidade buscarPorId(Long id) {
+        return cidadeRepository.findById(id).orElseThrow(NaoEncontradoException::new);
     }
 
     public List<Cidade> buscar(String nome, String estado) {
