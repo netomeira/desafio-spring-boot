@@ -31,16 +31,16 @@ public class ClienteService {
         return clienteRepository.findAll(where(likeNome(nome)));
     }
 
-    public void cadastrar(ClienteTO clienteTO) {
-        clienteRepository.save(modelMapper.map(clienteTO, Cliente.class));
+    public Cliente cadastrar(ClienteTO clienteTO) {
+        return clienteRepository.save(modelMapper.map(clienteTO, Cliente.class));
     }
 
-    public void editar(Long id, ClienteTO clienteTO) {
+    public Cliente editar(Long id, ClienteTO clienteTO) {
         Cliente cliente = this.buscarPorId(id);
 
         modelMapper.map(clienteTO, cliente);
 
-        clienteRepository.save(cliente);
+        return clienteRepository.save(cliente);
     }
 
     public void remover(Long id){

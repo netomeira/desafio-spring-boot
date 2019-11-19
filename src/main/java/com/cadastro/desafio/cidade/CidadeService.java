@@ -26,8 +26,8 @@ public class CidadeService {
         return cidadeRepository.findAll(where(likeNome(nome)).and(likeEstado(estado)));
     }
 
-    public void cadastrar(CidadeTO cidadeTO){
-        cidadeRepository.save(modelMapper.map(cidadeTO, Cidade.class));
+    public Cidade cadastrar(CidadeTO cidadeTO){
+        return cidadeRepository.save(modelMapper.map(cidadeTO, Cidade.class));
     }
 
 }
