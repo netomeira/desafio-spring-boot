@@ -1,32 +1,51 @@
 package com.cadastro.desafio.cliente;
 
+import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
+import com.cadastro.desafio.Utils;
+import com.cadastro.desafio.cidade.Cidade;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Table(name = "cliente")
 @Entity
 public class Cliente {
+    @Column(name = "id")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @Column(name = "nome")
     private String nome;
-
+    
+    @Column(name = "genero")
     @Enumerated(EnumType.STRING)
     private Genero genero;
-
+    
+    @Column(name = "data_nascimento")
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
+    
+    @JoinColumn(name = "cidade_id")
+    @ManyToOne
+    private Cidade cidade;
 
+    @Transient
+    @JsonProperty
     private Integer idade;
-
-    private String cidade;
 
     /**
      * @return Long return the id
@@ -84,31 +103,21 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     }
 
-    /**
-     * @return Integer return the idade
-     */
     public Integer getIdade() {
-        return idade;
+        return Utils.calcularIdade(this.dataNascimento);
     }
 
     /**
-     * @param idade the idade to set
+     * @return Cidade return the cidade
      */
-    public void setIdade(Integer idade) {
-        this.idade = idade;
-    }
-
-    /**
-     * @return String return the cidade
-     */
-    public String getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
 
     /**
      * @param cidade the cidade to set
      */
-    public void setCidade(String cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
 

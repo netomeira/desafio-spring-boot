@@ -5,7 +5,7 @@ public class ClienteTO {
     private String nome;
     private String genero;
     private String dataNascimento;
-    private String cidade;
+    private Long cidadeId;
 
     /**
      * @return String return the nome
@@ -50,17 +50,17 @@ public class ClienteTO {
     }
 
     /**
-     * @return String return the cidade
+     * @return Long return the cidadeId
      */
-    public String getCidade() {
-        return cidade;
+    public Long getCidadeId() {
+        return cidadeId;
     }
 
     /**
-     * @param cidade the cidade to set
+     * @param cidadeId the cidadeId to set
      */
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setCidadeId(Long cidadeId) {
+        this.cidadeId = cidadeId;
     }
 
 }

@@ -6,12 +6,15 @@ import static org.springframework.data.jpa.domain.Specification.where;
 
 import java.util.List;
 
-import com.cadastro.desafio.excecao.NaoEncontradoException;
-
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CidadeService {
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     private CidadeRepository cidadeRepository;
 
@@ -19,34 +22,12 @@ public class CidadeService {
         this.cidadeRepository = cidadeRepository;
     }
 
-    public Cidade buscarPorId(Long id) {
-        return cidadeRepository.findById(id).orElseThrow(NaoEncontradoException::new);
-    }
-
     public List<Cidade> buscar(String nome, String estado) {
         return cidadeRepository.findAll(where(likeNome(nome)).and(likeEstado(estado)));
     }
 
     public void cadastrar(CidadeTO cidadeTO){
-        Cidade cidade = new Cidade();
-        
-        cidade.setNome(cidadeTO.getNome());
-        cidade.setEstado(cidadeTO.getEstado());
-
-        cidadeRepository.save(cidade);
-    }
-
-    public void editar(Long id, CidadeTO cidadeTO){
-        Cidade cidade = this.buscarPorId(id);
-
-        cidade.setNome(cidadeTO.getNome());
-        cidade.setEstado(cidadeTO.getEstado());
-
-        cidadeRepository.save(cidade);
-    }
-
-    public void remover(Long id){
-        cidadeRepository.deleteById(id);
+        cidadeRepository.save(modelMapper.map(cidadeTO, Cidade.class));
     }
 
 }
