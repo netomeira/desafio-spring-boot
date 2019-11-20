@@ -1,11 +1,34 @@
 package com.cadastro.desafio.cliente;
 
+import java.util.Date;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ClienteTO {
 
+    @NotBlank(message = "Por favor preencha o campo 'nome'")
     private String nome;
+
+    @NotBlank(message = "Por favor preencha o campo 'genero'")
     private String genero;
-    private String dataNascimento;
+
+    @NotNull(message = "Por favor preencha o campo 'dataNascimento'")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date dataNascimento;
+
+    @NotNull(message = "Por favor preencha o campo 'cidadeId'")
     private Long cidadeId;
+
+    public ClienteTO(){}
+    public ClienteTO(String nome, String genero, Date dataNascimento, Long cidadeId) {
+        this.nome = nome;
+        this.genero = genero;
+        this.dataNascimento = dataNascimento;
+        this.cidadeId = cidadeId;
+    }
 
     /**
      * @return String return the nome
@@ -36,16 +59,16 @@ public class ClienteTO {
     }
 
     /**
-     * @return String return the dataNascimento
+     * @return Date return the dataNascimento
      */
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
     /**
      * @param dataNascimento the dataNascimento to set
      */
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

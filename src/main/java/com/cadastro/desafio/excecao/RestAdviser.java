@@ -2,8 +2,11 @@ package com.cadastro.desafio.excecao;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -22,6 +25,21 @@ public class RestAdviser {
 					Arrays.asList(ex.getMessage()));
 	}
 
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErroResponse handleException(MethodArgumentNotValidException ex) {
+		List<String> errors = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(x -> x.getDefaultMessage())
+				.collect(Collectors.toList());
+				
+		return new ErroResponse(new Date(), 
+					HttpStatus.BAD_REQUEST.value(), 
+					HttpStatus.BAD_REQUEST.getReasonPhrase(), 
+					errors);
+	}
+
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErroResponse handleException(Exception ex) {
@@ -30,4 +48,6 @@ public class RestAdviser {
 					HttpStatus.BAD_REQUEST.getReasonPhrase(), 
 					Arrays.asList(ex.getMessage()));
 	}
+
+	
 }

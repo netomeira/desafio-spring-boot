@@ -1,9 +1,21 @@
 package com.cadastro.desafio.cidade;
 
+import javax.validation.constraints.NotBlank;
+
 public class CidadeTO {
+    @NotBlank(message = "Por favor preencha o campo 'nome'")
     private String nome;
+
+    @NotBlank(message = "Por favor preencha o campo 'estado'")
     private String estado;
 
+    public CidadeTO(){}
+
+    public CidadeTO(String nome, String estado){
+        this.nome = nome;
+        this.estado = estado;
+    }
+    
     /**
      * @return String return the nome
      */

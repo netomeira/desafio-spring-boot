@@ -20,6 +20,18 @@ public class Cidade {
     @Column(name = "estado")
     private String estado;
 
+    public Cidade(){}
+    
+    public Cidade(Long id){
+        this.id = id;
+    }
+
+    public Cidade(Long id, String nome, String estado) {
+        this.id = id;
+        this.nome = nome;
+        this.estado = estado;
+    }
+
     /**
      * @return Long return the id
      */

@@ -1,4 +1,4 @@
-package com.cadastro.desafio;
+package com.cadastro.desafio.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

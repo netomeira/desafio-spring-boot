@@ -8,18 +8,15 @@ import java.util.List;
 
 import com.cadastro.desafio.excecao.NaoEncontradoException;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CidadeService {
 
-    @Autowired
-    private ModelMapper modelMapper;
-
     private CidadeRepository cidadeRepository;
 
+    @Autowired
     public CidadeService(CidadeRepository cidadeRepository) {
         this.cidadeRepository = cidadeRepository;
     }
@@ -33,7 +30,11 @@ public class CidadeService {
     }
 
     public Cidade cadastrar(CidadeTO cidadeTO){
-        return cidadeRepository.save(modelMapper.map(cidadeTO, Cidade.class));
+        Cidade novaCidade = new Cidade();
+        novaCidade.setNome(cidadeTO.getNome());
+        novaCidade.setEstado(cidadeTO.getEstado());
+
+        return cidadeRepository.save(novaCidade);
     }
 
 }
