@@ -30,7 +30,7 @@ public class CidadeServiceTest {
     public void testarCadastrarCidade() {
         when(cidadeRepository.save(any(Cidade.class))).thenReturn(new Cidade(1L, "Cidade Teste", "Estado Teste"));
 
-        Cidade cidade = cidadeService.cadastrar(new CidadeTO());
+        Cidade cidade = cidadeService.cadastrar(new CidadeDTO());
 
         assertNotNull(cidade);
         assert(cidade.getNome().equalsIgnoreCase("Cidade Teste"));

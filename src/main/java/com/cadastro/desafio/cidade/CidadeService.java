@@ -29,10 +29,10 @@ public class CidadeService {
         return cidadeRepository.findAll(where(likeNome(nome)).and(likeEstado(estado)));
     }
 
-    public Cidade cadastrar(CidadeTO cidadeTO){
+    public Cidade cadastrar(CidadeDTO cidadeDTO){
         Cidade novaCidade = new Cidade();
-        novaCidade.setNome(cidadeTO.getNome());
-        novaCidade.setEstado(cidadeTO.getEstado());
+        novaCidade.setNome(cidadeDTO.getNome());
+        novaCidade.setEstado(cidadeDTO.getEstado());
 
         return cidadeRepository.save(novaCidade);
     }

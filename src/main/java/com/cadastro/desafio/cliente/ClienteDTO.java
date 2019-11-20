@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class ClienteTO {
+public class ClienteDTO {
 
     @NotBlank(message = "Por favor preencha o campo 'nome'")
     private String nome;
@@ -22,8 +22,8 @@ public class ClienteTO {
     @NotNull(message = "Por favor preencha o campo 'cidadeId'")
     private Long cidadeId;
 
-    public ClienteTO(){}
-    public ClienteTO(String nome, String genero, Date dataNascimento, Long cidadeId) {
+    public ClienteDTO(){}
+    public ClienteDTO(String nome, String genero, Date dataNascimento, Long cidadeId) {
         this.nome = nome;
         this.genero = genero;
         this.dataNascimento = dataNascimento;

@@ -30,16 +30,16 @@ public class ClienteService {
         return clienteRepository.findAll(where(likeNome(nome)));
     }
 
-    public Cliente cadastrar(ClienteTO clienteTO) {
+    public Cliente cadastrar(ClienteDTO clienteDTO) {
         Cliente novoCliente = new Cliente();
-        mapear(clienteTO, novoCliente);
+        mapear(clienteDTO, novoCliente);
 
         return clienteRepository.save(novoCliente);
     }
 
-    public Cliente editar(Long id, ClienteTO clienteTO) {
+    public Cliente editar(Long id, ClienteDTO clienteDTO) {
         Cliente cliente = this.buscarPorId(id);
-        mapear(clienteTO, cliente);
+        mapear(clienteDTO, cliente);
 
         return clienteRepository.save(cliente);
     }
@@ -48,11 +48,11 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
-    private void mapear(ClienteTO clienteTO, Cliente cliente){
-        cliente.setNome(clienteTO.getNome());
-        cliente.setGenero(Genero.get(clienteTO.getGenero()));
-        cliente.setDataNascimento(clienteTO.getDataNascimento());
-        cliente.setCidade(cidadeRepository.findById(clienteTO.getCidadeId()).orElseThrow(NaoEncontradoException::new));
+    private void mapear(ClienteDTO clienteDTO, Cliente cliente){
+        cliente.setNome(clienteDTO.getNome());
+        cliente.setGenero(Genero.get(clienteDTO.getGenero()));
+        cliente.setDataNascimento(clienteDTO.getDataNascimento());
+        cliente.setCidade(cidadeRepository.findById(clienteDTO.getCidadeId()).orElseThrow(NaoEncontradoException::new));
     }
 
 }

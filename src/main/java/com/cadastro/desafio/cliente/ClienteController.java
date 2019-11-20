@@ -31,21 +31,17 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarPorId(@PathVariable("id") Long id) throws Exception {
-        Cliente cliente = clienteService.buscarPorId(id);
-
-        return ResponseEntity.ok(cliente);
+        return ResponseEntity.ok(clienteService.buscarPorId(id));
     }
 
     @GetMapping
     public ResponseEntity<List<Cliente>> buscar(@RequestParam(required = false) String nome,
             @RequestParam(required = false) String estado) {
-        List<Cliente> listaResultado = clienteService.buscar(nome, estado);
-
-        return ResponseEntity.ok(listaResultado);
+        return ResponseEntity.ok(clienteService.buscar(nome, estado));
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> cadastrar(@Valid @RequestBody ClienteTO cidade) {
+    public ResponseEntity<Cliente> cadastrar(@Valid @RequestBody ClienteDTO cidade) {
         Cliente novoCliente = clienteService.cadastrar(cidade);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -54,10 +50,8 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> editar(@PathVariable("id") Long id, @Valid @RequestBody ClienteTO cidade) {
-        Cliente clienteEditado = clienteService.editar(id, cidade);
-
-        return ResponseEntity.ok().body(clienteEditado);
+    public ResponseEntity<Cliente> editar(@PathVariable("id") Long id, @Valid @RequestBody ClienteDTO cidade) {
+        return ResponseEntity.ok(clienteService.editar(id, cidade));
     }
 
     @DeleteMapping("/{id}")

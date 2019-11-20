@@ -47,7 +47,7 @@ public class ClienteServiceTest {
         when(clienteRepository.save(any(Cliente.class))).thenReturn(new Cliente(1L, "Cliente Teste", Genero.M, new Date(), new Cidade()));
         when(cidadeRepository.findById(anyLong())).thenReturn(Optional.of(new Cidade()));
 
-        Cliente cliente = clienteService.cadastrar(new ClienteTO("Cliente Teste", "M", new Date(), 1L));
+        Cliente cliente = clienteService.cadastrar(new ClienteDTO("Cliente Teste", "M", new Date(), 1L));
 
         assertNotNull(cliente);
         assert(cliente.getNome().equalsIgnoreCase("Cliente Teste"));

@@ -1,4 +1,4 @@
-package com.cadastro.desafio;
+package com.cadastro.desafio.utils;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -6,7 +6,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class Utils {
+public class DataUtils {
 
     public static int calcularIdade(Date dataNascimento) {
 

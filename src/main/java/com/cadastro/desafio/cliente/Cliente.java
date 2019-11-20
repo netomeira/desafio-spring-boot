@@ -16,8 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import com.cadastro.desafio.Utils;
 import com.cadastro.desafio.cidade.Cidade;
+import com.cadastro.desafio.utils.DataUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Table(name = "cliente")
@@ -112,7 +112,7 @@ public class Cliente {
     }
 
     public Integer getIdade() {
-        return Utils.calcularIdade(this.dataNascimento);
+        return DataUtils.calcularIdade(this.dataNascimento);
     }
 
     /**

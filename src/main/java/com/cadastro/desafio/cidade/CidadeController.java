@@ -29,21 +29,17 @@ public class CidadeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Cidade> buscarPorId(@PathVariable("id") Long id) throws Exception {
-        Cidade cidade = cidadeService.buscarPorId(id);
-
-        return ResponseEntity.ok(cidade);
+        return ResponseEntity.ok(cidadeService.buscarPorId(id));
     }
     
     @GetMapping
     public ResponseEntity<List<Cidade>> buscar(@RequestParam(required = false) String nome,
             @RequestParam(required = false) String estado) {
-        List<Cidade> listaResultado = cidadeService.buscar(nome, estado);
-
-        return ResponseEntity.ok(listaResultado);
+        return ResponseEntity.ok(cidadeService.buscar(nome, estado));
     }
 
     @PostMapping
-    public ResponseEntity<Cidade> cadastrar(@Valid @RequestBody CidadeTO cidade) {
+    public ResponseEntity<Cidade> cadastrar(@Valid @RequestBody CidadeDTO cidade) {
         Cidade novaCidade = cidadeService.cadastrar(cidade);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
