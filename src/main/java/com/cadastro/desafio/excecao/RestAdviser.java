@@ -23,6 +23,8 @@ public class RestAdviser {
 	@ExceptionHandler(NaoEncontradoException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public ErroResponse handleException(NaoEncontradoException ex) {
+		LOG.error(ex.getMessage(), ex);
+
 		return new ErroResponse(new Date(), 
 					HttpStatus.NOT_FOUND.value(), 
 					HttpStatus.NOT_FOUND.getReasonPhrase(), 
@@ -32,6 +34,8 @@ public class RestAdviser {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErroResponse handleException(MethodArgumentNotValidException ex) {
+		LOG.error(ex.getMessage(), ex);
+
 		List<String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
@@ -47,6 +51,8 @@ public class RestAdviser {
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErroResponse handleException(Exception ex) {
+		LOG.error(ex.getMessage(), ex);
+
 		return new ErroResponse(new Date(), 
 					HttpStatus.BAD_REQUEST.value(), 
 					HttpStatus.BAD_REQUEST.getReasonPhrase(), 
