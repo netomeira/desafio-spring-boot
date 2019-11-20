@@ -5,7 +5,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,10 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 @ExtendWith(MockitoExtension.class)
-@SpringJUnitConfig
 public class CidadeServiceTest {
 
     @Mock
@@ -35,6 +32,7 @@ public class CidadeServiceTest {
 
         Cidade cidade = cidadeService.cadastrar(new CidadeTO());
 
+        assertNotNull(cidade);
         assert(cidade.getNome().equalsIgnoreCase("Cidade Teste"));
         assert(cidade.getEstado().equalsIgnoreCase("Estado Teste"));
     }

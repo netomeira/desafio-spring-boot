@@ -46,6 +46,15 @@ public class Cliente {
     @JsonProperty
     private Integer idade;
 
+    public Cliente() {}
+    public Cliente(Long id, String nome, Genero genero, Date dataNascimento, Cidade cidade) {
+        this.id = id;
+        this.nome = nome;
+        this.genero = genero;
+        this.dataNascimento = dataNascimento;
+        this.cidade = cidade;
+    }
+
     /**
      * @return Long return the id
      */

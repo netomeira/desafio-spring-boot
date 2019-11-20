@@ -7,7 +7,7 @@ API REST implementada em Spring Boot
 * Spring Boot Actuator
 * Swagger 2
 * H2
-* Docker
+* JUnit 5
 
 # Funcionalidades
 * Validação de parâmetros de entrada
@@ -35,4 +35,10 @@ Para iniciar o projeto, execute:
 
 ```sh
 mvn spring-boot:run
+```
+
+Para gerar o relatório de cobertura de testes, execute:
+
+```sh
+mvn test
 ```
