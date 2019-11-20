@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "a4da4537-d626-48d5-82a0-4df3216cbf0e",
+		"name": "Desafio Spring Boot",
+		"description": "Coleção de requests para o desafio de API REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cadastrar Cidade",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nome\": \"Santa Rita\",\n \"estado\": \"Paraiba\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/cidade",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cidade"
+					]
+				},
+				"description": "POST Request para cadastrar cidade"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Cidade por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/cidade/4",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cidade",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Cidade",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/cidade?",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cidade"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Santa Rita",
+							"disabled": true
+						},
+						{
+							"key": "estado",
+							"value": "Paraiba",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Cliente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nome\":\"Videl\",\n \"genero\": \"F\",\n \"dataNascimento\": \"2012-02-24\",\n \"cidadeId\": 3\n}"
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/cliente",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Cliente por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/cliente/1",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cliente",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Cliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/cliente?",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cliente"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Neto",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover Cliente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/cliente/3",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cliente",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Cliente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nome\":\"Videl\",\n \"genero\": \"F\",\n \"dataNascimento\": \"2012-02-28\",\n \"cidadeId\": 2\n}"
+				},
+				"url": {
+					"raw": "{{host}}:{{port}}/cliente/3",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cliente",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/actuator/health",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
