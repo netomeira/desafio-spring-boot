@@ -6,7 +6,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class DataUtils {
+public class CalcularIdadeUtils {
 
     public static int calcularIdade(Date dataNascimento) {
 
