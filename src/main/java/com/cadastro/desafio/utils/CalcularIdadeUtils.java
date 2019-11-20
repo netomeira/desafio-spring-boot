@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class CalcularIdadeUtils {
 
-    public static int calcularIdade(Date dataNascimento) {
+    public static int calcular(Date dataNascimento) {
 
         if ((dataNascimento != null)) {
             LocalDate dataConvertida = Instant.ofEpochMilli(dataNascimento.getTime())

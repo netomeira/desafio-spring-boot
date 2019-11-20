@@ -112,7 +112,7 @@ public class Cliente {
     }
 
     public Integer getIdade() {
-        return CalcularIdadeUtils.calcularIdade(this.dataNascimento);
+        return CalcularIdadeUtils.calcular(this.dataNascimento);
     }
 
     /**
